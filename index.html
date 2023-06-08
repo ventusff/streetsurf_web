@@ -4,33 +4,34 @@
   <meta charset="utf-8">
   <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
   <!-- Replace the content tag with appropriate information -->
-  <meta name="description" content="DESCRIPTION META TAG">
-  <meta property="og:title" content="SOCIAL MEDIA TITLE TAG"/>
-  <meta property="og:description" content="SOCIAL MEDIA DESCRIPTION TAG TAG"/>
-  <meta property="og:url" content="URL OF THE WEBSITE"/>
+  <meta name="description" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views. StreetSurf is a novel multi-view implicit surface reconstruction technique that is readily applicable to street view images in autonomous driving datasets like waymo.">
+  <meta property="og:title" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views"/>
+  <meta property="og:description" content="We present a novel multi-view implicit surface reconstruction technique, termed StreetSurf, that is readily applicable to street view images in widely-used autonomous driving datasets, such as Waymo-perception sequences, without necessarily requiring LiDAR data. As neural rendering research expands rapidly, its integration into street views has started to draw interests. Existing approaches on street views either mainly focus on novel view synthesis with little exploration of the scene geometry, or rely heavily on dense LiDAR data when investigating reconstruction. Neither of them investigates multi-view implicit surface reconstruction, especially under settings without LiDAR data. Our method extends prior object-centric neural surface reconstruction techniques to address the unique challenges posed by the unbounded street views that are captured with non-object-centric, long and narrow camera trajectories. We delimit the unbounded space into three parts, close-range, distant-view and sky, with aligned cuboid boundaries, and adapt cuboid/hyper-cuboid hash-grids along with road-surface initialization scheme for finer and disentangled representation. To further address the geometric errors arising from textureless regions and insufficient viewing angles, we adopt geometric priors that are estimated using general purpose monocular models. Coupled with our implementation of efficient and fine-grained multi-stage ray marching strategy, we achieve state of the art reconstruction quality in both geometry and appearance within only one to two hours of training time with a single RTX3090 GPU for each street view sequence. Furthermore, we demonstrate that the reconstructed implicit surfaces have rich potential for various downstream tasks, including ray tracing and LiDAR simulation."/>
+  <meta property="og:url" content="https://ventusff.github.io/streetsurf"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image" content="static/teasers/fig_overview.jpg" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
 
-  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
-  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <meta name="twitter:title" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views">
+  <meta name="twitter:description" content="We present a novel multi-view implicit surface reconstruction technique, termed StreetSurf, that is readily applicable to street view images in widely-used autonomous driving datasets, such as Waymo-perception sequences, without necessarily requiring LiDAR data. As neural rendering research expands rapidly, its integration into street views has started to draw interests. Existing approaches on street views either mainly focus on novel view synthesis with little exploration of the scene geometry, or rely heavily on dense LiDAR data when investigating reconstruction. Neither of them investigates multi-view implicit surface reconstruction, especially under settings without LiDAR data. Our method extends prior object-centric neural surface reconstruction techniques to address the unique challenges posed by the unbounded street views that are captured with non-object-centric, long and narrow camera trajectories. We delimit the unbounded space into three parts, close-range, distant-view and sky, with aligned cuboid boundaries, and adapt cuboid/hyper-cuboid hash-grids along with road-surface initialization scheme for finer and disentangled representation. To further address the geometric errors arising from textureless regions and insufficient viewing angles, we adopt geometric priors that are estimated using general purpose monocular models. Coupled with our implementation of efficient and fine-grained multi-stage ray marching strategy, we achieve state of the art reconstruction quality in both geometry and appearance within only one to two hours of training time with a single RTX3090 GPU for each street view sequence. Furthermore, we demonstrate that the reconstructed implicit surfaces have rich potential for various downstream tasks, including ray tracing and LiDAR simulation.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="static/teasers/fig_overview.jpg">
+  <meta name="twitter:card" content="static/teasers/fig_overview.jpg">
   <!-- Keywords for your paper to be indexed by-->
-  <meta name="keywords" content="KEYWORDS SHOULD BE PLACED HERE">
+  <meta name="keywords" content="street view, 3d reconstruction, neural rendering, implicit surface reconstruction, lidar simulation, nerf, neus">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <title>Academic Project Page</title>
+  <title>StreetSurf</title>
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
   <link rel="stylesheet" href="static/css/bulma.min.css">
   <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-divider.min.css">
   <link rel="stylesheet" href="static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
@@ -43,6 +44,30 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+  <!-- 3D model viewer -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
+  <script>
+    self.ModelViewerElement = self.ModelViewerElement || {};
+    self.ModelViewerElement.meshoptDecoderLocation = 'https://cdn.jsdelivr.net/npm/meshoptimizer/meshopt_decoder.js';
+  </script>
+  <style>
+    .model-viewer-container {
+      position: relative;
+      width: 100%;
+      /* Example: Set aspect ratio to 16:9 */
+      padding-bottom: 56.25%; /* 100% * 9 / 16 */
+      overflow: hidden;
+    }
+
+    model-viewer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
 
@@ -52,38 +77,53 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Academic Project Page</h1>
+            <h1 class="title is-1 publication-title">StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">First Author</a><sup>*</sup>,</span>
-                <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Second Author</a><sup>*</sup>,</span>
-                  <span class="author-block">
-                    <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Third Author</a>
-                  </span>
-                  </div>
+                <a href="https://ventusff.github.io/" target="_blank">Jianfei Guo<sup>1</sup></a>,</span>
+                <span class="author-block">Nianchen Deng<sup>1</sup>,</span>
+                <span class="author-block">Xinyang Li<sup>1</sup>,</span>
+                <span class="author-block">Yeqi Bai<sup>1</sup>,</span>
+                <span class="author-block">Botian Shi<sup>1</sup>,</span>
+                <br>
+                <span class="author-block">Chiyu Wang<sup>2</sup>,</span>
+                <span class="author-block">Chenjing Ding<sup>2</sup>,</span>
+                <span class="author-block">Dongliang Wang<sup>2</sup>,</span>
+                <span class="author-block"><a href="https://liyikang.top/">Yikang Li<sup>1&dagger;</sup></a></span>
+            </div>
 
                   <div class="is-size-5 publication-authors">
-                    <span class="author-block">Institution Name<br>Conferance name and year</span>
-                    <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
+                    <span class="author-block"><a href="https://www.shlab.org.cn/" target="_blank"><sup>1</sup>Shanghai Artificial Intelligence Laboratory</a>,</span>
+                    <span class="author-block"><sup>2</sup>Sensetime Research</span>
                   </div>
 
                   <div class="column has-text-centered">
-                    <div class="publication-links">
-                         <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
+                  <div class="publication-links">
+                <!-- ArXiv abstract Link -->
+                <span class="link-block">
+                    <a href="" target="_blank"
+                    class="external-link button is-normal is-rounded ">  <!-- is-dark -->
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
                     </span>
+                    <span>arXiv (Coming soon)</span>
+                  </a>
+                </span>
+
+                  <!-- Arxiv PDF link -->
+                  <!-- <span class="link-block">
+                      <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>-->
 
                     <!-- Supplementary PDF link -->
-                    <span class="link-block">
+                  <!-- <span class="link-block">
                       <a href="static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
@@ -91,29 +131,17 @@
                       </span>
                       <span>Supplementary</span>
                     </a>
-                  </span>
+                  </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
-                    <a href="https://github.com/YOUR REPO HERE" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
+                  <a href="" target="_blank" class="external-link button is-normal is-rounded">  <!-- is-dark -->
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code (Coming soon)</span>
                   </a>
                 </span>
-
-                <!-- ArXiv abstract Link -->
-                <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
-                  class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
             </div>
           </div>
         </div>
@@ -127,13 +155,38 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
-        <source src="static/videos/banner_video.mp4"
-        type="video/mp4">
-      </video>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg134763_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg163453_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg405841_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg102751_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
       <h2 class="subtitle has-text-centered">
-        Aliquam vitae elit ullamcorper tellus egestas pellentesque. Ut lacus tellus, maximus vel lectus at, placerat pretium mi. Maecenas dignissim tincidunt vestibulum. Sed consequat hendrerit nisl ut maximus. 
+        Implicit multi-view 3D reconstruction of static backgrounds on <a href="https://waymo.com/open/data/perception/" target="_blank">Waymo Open Dataset</a>, <br><strong>without using any LiDAR data</strong> (using only posed images and inferred cues).
       </h2>
     </div>
   </div>
@@ -148,7 +201,24 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            We present a novel multi-view implicit surface reconstruction technique, termed <strong>StreetSurf</strong>, that is readily applicable to street view images in widely-used autonomous driving datasets, such as Waymo-perception sequences, without necessarily requiring LiDAR data.
+          </p>
+          <p>
+            As neural rendering research expands rapidly, its integration into street views has started to draw interests. Existing approaches on street views either mainly focus on novel view synthesis with little exploration of the scene geometry, or rely heavily on dense LiDAR data when investigating reconstruction. Neither of them investigates multi-view implicit surface reconstruction, especially under settings without LiDAR data.
+          </p> 
+          <p>
+            Our method extends prior object-centric neural surface reconstruction techniques to address the unique challenges posed by the unbounded street views that are captured with non-object-centric, long and narrow camera trajectories. We delimit the unbounded space into three parts, close-range, distant-view and sky, with aligned cuboid boundaries, and adapt cuboid/hyper-cuboid hash-grids along with road-surface initialization scheme for finer and disentangled representation. To further address the geometric errors arising from textureless regions and insufficient viewing angles, we adopt geometric priors that are estimated using general purpose monocular models.
+          </p>
+
+          <p>
+            Coupled with our implementation of efficient and fine-grained multi-stage ray marching strategy, we achieve state of the art reconstruction quality in both geometry and appearance within only one to two hours of training time with a single RTX3090 GPU for each street view sequence. Furthermore, we demonstrate that the reconstructed implicit surfaces have rich potential for various downstream tasks, including ray tracing and LiDAR simulation.
+          </p>
+        </div>
+
+        <img src="static/teasers/fig_overview.jpg" alt="StreetSurf Overview"/>
+        <div class="content has-text-justified">
+          <p>
+            StreetSurf overview. By using a collection of posed images, along with an optional set of LiDAR data or monocular cues as inputs (or supervisions), we reconstruct the street-view scene through an optimization process. Each scene is divided into three parts according to the viewing distance, namely <strong>close-range</strong> (cr), <strong>distant-view</strong> (dv) and <strong>sky</strong>.
           </p>
         </div>
       </div>
@@ -159,141 +229,335 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
-  </div>
-</div>
-</div>
-</section>
 <!-- End image carousel -->
 
 
 
 
 <!-- Youtube video -->
-<section class="hero is-small is-light">
-  <div class="hero-body">
-    <div class="container">
-      <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <!-- End youtube video -->
 
+<!-- Overview -->
+<section class="hero is-small">
 
-<!-- Video carousel -->
+</section>
+<!-- End Overview -->
+
+
+
+<!-- Replay and render 3D reconstructed streets -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
+      <h2 class="title is-3">Street-view reconstruction of autonomous driving datasets</h2>
+      <div class="content has-text-justified">
+        <p>
+          StreetSurf primarily takes posed images as inputs and does not necessariy rely on dense LiDAR inputs. It can work well with dense LiDAR, with only sparse LiDARs, or even without any LiDAR at all.
+          Below results are conducted on a widely-used autonomous driving dataset: <a href="https://waymo.com/open/data/perception/" target="_blank">Waymo Open Dataset</a>.
+        </p>
+      </div>
+
+      <div class="columns is-centered">
+      <div class="column is-half">
+      <!-- With LiDAR -->
+      <h3 class="title is-4">With LiDAR data input</h3>
+      <div class="content has-text-justified">
+        <p>Multi-view reconstruction using posed images and four sparser auxiliary LiDARs, while exluding the dense TOP LiDAR.</p>
+      </div>
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
+            <source src="static/teasers/seg100613_with_lidar.mp4"
             type="video/mp4">
           </video>
+          <img src="static/teasers/seg100613_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg100613"/>
+          <div class="subtitle has-text-centered">
+            <p>seg100613..., marching cubes @ 0.1m</p>
+          </div>
         </div>
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
+            <source src="static/teasers/seg153495_with_lidar.mp4"
             type="video/mp4">
           </video>
+          <img src="static/teasers/seg153495_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg153495"/>
+          <div class="subtitle has-text-centered">
+            <p>seg153495..., marching cubes @ 0.1m</p>
+          </div>
         </div>
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
+            <source src="static/teasers/seg106762_with_lidar.mp4"
             type="video/mp4">
           </video>
+          <img src="static/teasers/seg106762_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg106762"/>
+          <div class="subtitle has-text-centered">
+            <p>seg106762..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/teasers/seg158686_with_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg158686_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg158686"/>
+          <div class="subtitle has-text-centered">
+            <p>seg158686..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video5">
+          <video poster="" id="video5" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/teasers/seg152706_with_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg152706_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg152706"/>
+          <div class="subtitle has-text-centered">
+            <p>seg152706..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video6">
+          <video poster="" id="video6" autoplay controls muted loop height="100%">\
+            <!-- Your video file here -->
+            <source src="static/teasers/seg132384_with_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg132384_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg132384"/>
+          <div class="subtitle has-text-centered">
+            <p>seg132384..., marching cubes @ 0.1m</p>
+          </div>
         </div>
       </div>
+      <!-- End With LiDAR -->
+      </div>
+
+      <div class="column is-half">
+      <!-- Without LiDAR -->
+      <h3 class="title is-4">Without LiDAR data input</h3>
+      <div class="content has-text-justified">
+        <p>Multi-view reconstruction using only posed images and inferred cues from these images.</p>
+      </div>
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-video1">
+          <video poster="" id="video1" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg134763_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg134763_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg134763"/>
+          <div class="subtitle has-text-centered">
+            <p>seg134763..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video2">
+          <video poster="" id="video2" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg163453_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg163453_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg163453"/>
+          <div class="subtitle has-text-centered">
+            <p>seg163453..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video3">
+          <video poster="" id="video3" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg405841_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg405841_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg405841"/>
+          <div class="subtitle has-text-centered">
+            <p>seg405841..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+        <div class="item item-video4">
+          <video poster="" id="video4" autoplay controls muted loop height="100%">
+            <!-- Your video here -->
+            <source src="static/teasers/seg102751_no_lidar.mp4"
+            type="video/mp4">
+          </video>
+          <img src="static/teasers/seg102751_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg102751"/>
+          <div class="subtitle has-text-centered">
+            <p>seg102751..., marching cubes @ 0.1m</p>
+          </div>
+        </div>
+      </div>
+      <!-- End Without LiDAR -->
+      </div>
+      </div>
+    </div> <!-- <div class="container">-->
+  </div>
+</section>
+<!-- End Replay and render 3D reconstructed streets -->
+
+
+
+<!-- Reconstructed surfaces -->
+<section class="hero is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Extracting reconstructed surfaces</h2>
+      <div class="content has-text-justified">
+        <p>
+          Using StreetSurf, you can obtain an continuous representation (SDF) of scene geometry that has infinitesimal granularity. Subsequently, you can extract high-resolution meshes or occupancy grids out of the reconstructed implicit surface.
+        </p>
+      </div>
+
+      <!-- Marching Cube -->
+      <h3 class="title is-4">Marching cubes @ 0.1(m)</h3>
+      <div class="content has-text-justified">
+        <p>
+          Note that the meshes are heavily optimized to reduce size for online loading.
+        </p>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <div class="model-viewer-container">
+            <model-viewer alt="seg152706 with LiDAR mesh" src="static/meshes/seg152706_with_lidar_res=0.1_comp.glb" poster="static/teasers/seg152706_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="200deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="model-viewer-container">
+            <model-viewer alt="seg158686 with LiDAR mesh" src="static/meshes/seg158686_with_lidar_res=0.1_comp.glb" poster="static/teasers/seg158686_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="320deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
+          </div>
+        </div>
+      </div>
+      <!-- End Marching Cube -->
+
+      <!-- Multi-frame concat -->
+      <!-- <h3 class="title is-4">Multi-frame concat of pointcloud projected with camera-rendered depth</h3> -->
+      <!-- End multi-frame concat -->
+
+
     </div>
   </div>
 </section>
-<!-- End video carousel -->
+<!-- End Reconstructed surfaces -->
 
 
 
-
-
-
-<!-- Paper poster -->
-<section class="hero is-small is-light">
+<!-- Ray tracing -->
+<section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+      <h2 class="title is-3">Ray tracing guided by reconstructed surfaces</h2>
+      <div class="content has-text-justified">
+        <p>
+          One of the major fallback of volume rendering is that its depth rendering is often indefinite and inaccurate. However with StreetSurf, the rendering process can be naturally guided by the reconstructed implicit surface representation.
+        </p>
       </div>
+
+      <!-- Lidar simulation -->
+      <h3 class="title is-4">Lidar simulation</h3>
+      <div class="columns is-centered">
+        <!-- gt pred -->
+        <div class="column is-two-thirds">
+          <div class="content has-text-justified">
+            <p>
+              The comparison of ground truth TOP LiDAR pointcloud with the simulated pointcloud projected from the volume-rendered depths on the original LiDAR beams.
+            </p>
+          </div>
+          <video poster="" id="tree" autoplay controls muted loop height="100%">
+            <source src="static/teasers/seg405841_lidarsim_crf35.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <div class="divider is-vertical is-left"></div>
+
+        <!-- segmentation -->
+        <div class="column">
+          <div class="content has-text-justified">
+            <p>
+              Directly feeding the volume-rendered pointcloud into a 3d segmentation model obtained from <a href="https://github.com/PJLab-ADG/PCSeg" target="_blank">PCSeg</a>.
+            </p>
+            <img src="static/teasers/segmentation.jpg" alt="Inferred 3d segmentation on the volume-rendered pointcloud."/>
+          </div>
+
+        </div>
+      </div>
+
+
+
+
+      
+
+      <h3 class="title is-4">Sphere tracing</h3>
+      <div class="content has-text-justified">
+        <p>
+          Direcly apply sphere-tracing instead of volume rendering.
+        </p>
+      </div>
+      <div class="columns">
+        <div class="column is-one-quater">
+          <img src="static/teasers/raytrace/seg134763_19_gt.jpg" alt="GT Image"/>
+          <div class="content has-text-centered">
+            <p>GT Image</p>
+          </div>
+        </div>
+        <div class="column is-one-quater">
+          <img src="static/teasers/raytrace/seg134763_19_vol_normal.jpg" alt="Volume-rendered normals"/>
+          <div class="content has-text-centered">
+            <p>Volume-rendered normals</p>
+          </div>
+        </div>
+        <div class="column is-one-quater">
+          <img src="static/teasers/raytrace/seg134763_19_vol_rgb.jpg" alt="Volume-rendered image"/>
+          <div class="content has-text-centered">
+            <p>Volume-rendered image</p>
+          </div>
+        </div>
+        <div class="column is-one-quater">
+          <img src="static/teasers/raytrace/seg134763_19_sphere_rgb.jpg" alt="Sphere-traced image"/>
+          <div class="content has-text-centered">
+            <p>Sphere-traced image</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <div class="content has-text-justified">
+        <p>
+          Shade the implicit surface under different envmaps based on sphere-tracing.
+        </p>
+      </div> -->
+
     </div>
-  </section>
+  </div>
+</section>
+<!-- End Ray tracing -->
+
+<!-- Benchmark -->
+<!-- <section class="hero is-small is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Benchmark of street-view static reconstruction in Waymo Open Dataset</h2>
+
+    </div>
+  </div>
+</section> -->
+<!-- End Benchmark -->
+
+<!-- Paper poster -->
 <!--End paper poster -->
 
 
 <!--BibTex citation -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
-    </div>
-</section>
 <!--End BibTex citation -->
 
 
-  <footer class="footer">
+<footer class="footer">
   <div class="container">
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
-            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This page was built based on the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> and the source code of the <a href="https://nerfies.github.io/" target="_blank">nerfies</a> website.
           </p>
 
         </div>
@@ -306,7 +570,7 @@
   
 <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
 
-    <!-- End of Statcounter Code -->
+<!-- End of Statcounter Code -->
 
-  </body>
-  </html>
+</body>
+</html>
