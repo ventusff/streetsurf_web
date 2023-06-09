@@ -7,9 +7,9 @@
   <meta name="description" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views. StreetSurf is a novel multi-view implicit surface reconstruction technique that is readily applicable to street view images in autonomous driving datasets like waymo.">
   <meta property="og:title" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views"/>
   <meta property="og:description" content="We present a novel multi-view implicit surface reconstruction technique, termed StreetSurf, that is readily applicable to street view images in widely-used autonomous driving datasets, such as Waymo-perception sequences, without necessarily requiring LiDAR data. As neural rendering research expands rapidly, its integration into street views has started to draw interests. Existing approaches on street views either mainly focus on novel view synthesis with little exploration of the scene geometry, or rely heavily on dense LiDAR data when investigating reconstruction. Neither of them investigates multi-view implicit surface reconstruction, especially under settings without LiDAR data. Our method extends prior object-centric neural surface reconstruction techniques to address the unique challenges posed by the unbounded street views that are captured with non-object-centric, long and narrow camera trajectories. We delimit the unbounded space into three parts, close-range, distant-view and sky, with aligned cuboid boundaries, and adapt cuboid/hyper-cuboid hash-grids along with road-surface initialization scheme for finer and disentangled representation. To further address the geometric errors arising from textureless regions and insufficient viewing angles, we adopt geometric priors that are estimated using general purpose monocular models. Coupled with our implementation of efficient and fine-grained multi-stage ray marching strategy, we achieve state of the art reconstruction quality in both geometry and appearance within only one to two hours of training time with a single RTX3090 GPU for each street view sequence. Furthermore, we demonstrate that the reconstructed implicit surfaces have rich potential for various downstream tasks, including ray tracing and LiDAR simulation."/>
-  <meta property="og:url" content="https://ventusff.github.io/streetsurf_web"/>
+  <meta property="og:url" content="https://longtimenohack.com/streetsurf_web"/>
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
-  <meta property="og:image" content="static/teasers/fig_overview.jpg" />
+  <meta property="og:image" content="streetsurf_web/static/teasers/fig_overview.jpg" />
   <meta property="og:image:width" content="1200"/>
   <meta property="og:image:height" content="630"/>
 
@@ -17,33 +17,33 @@
   <meta name="twitter:title" content="StreetSurf: Extending Multi-view Implicit Surface Reconstruction to Street Views">
   <meta name="twitter:description" content="We present a novel multi-view implicit surface reconstruction technique, termed StreetSurf, that is readily applicable to street view images in widely-used autonomous driving datasets, such as Waymo-perception sequences, without necessarily requiring LiDAR data. As neural rendering research expands rapidly, its integration into street views has started to draw interests. Existing approaches on street views either mainly focus on novel view synthesis with little exploration of the scene geometry, or rely heavily on dense LiDAR data when investigating reconstruction. Neither of them investigates multi-view implicit surface reconstruction, especially under settings without LiDAR data. Our method extends prior object-centric neural surface reconstruction techniques to address the unique challenges posed by the unbounded street views that are captured with non-object-centric, long and narrow camera trajectories. We delimit the unbounded space into three parts, close-range, distant-view and sky, with aligned cuboid boundaries, and adapt cuboid/hyper-cuboid hash-grids along with road-surface initialization scheme for finer and disentangled representation. To further address the geometric errors arising from textureless regions and insufficient viewing angles, we adopt geometric priors that are estimated using general purpose monocular models. Coupled with our implementation of efficient and fine-grained multi-stage ray marching strategy, we achieve state of the art reconstruction quality in both geometry and appearance within only one to two hours of training time with a single RTX3090 GPU for each street view sequence. Furthermore, we demonstrate that the reconstructed implicit surfaces have rich potential for various downstream tasks, including ray tracing and LiDAR simulation.">
   <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
-  <meta name="twitter:image" content="static/teasers/fig_overview.jpg">
-  <meta name="twitter:card" content="static/teasers/fig_overview.jpg">
+  <meta name="twitter:image" content="streetsurf_web/static/teasers/fig_overview.jpg">
+  <meta name="twitter:card" content="streetsurf_web/static/teasers/fig_overview.jpg">
   <!-- Keywords for your paper to be indexed by-->
   <meta name="keywords" content="street view, 3d reconstruction, neural rendering, implicit surface reconstruction, lidar simulation, nerf, neus">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
   <title>StreetSurf</title>
-  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="streetsurf_web/static/images/favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
   rel="stylesheet">
 
-  <link rel="stylesheet" href="static/css/bulma.min.css">
-  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="static/css/bulma-divider.min.css">
-  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/bulma.min.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/bulma-divider.min.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/fontawesome.all.min.css">
   <link rel="stylesheet"
   href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="streetsurf_web/static/css/index.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-  <script defer src="static/js/fontawesome.all.min.js"></script>
-  <script src="static/js/bulma-carousel.min.js"></script>
-  <script src="static/js/bulma-slider.min.js"></script>
-  <script src="static/js/index.js"></script>
+  <script defer src="streetsurf_web/static/js/fontawesome.all.min.js"></script>
+  <script src="streetsurf_web/static/js/bulma-carousel.min.js"></script>
+  <script src="streetsurf_web/static/js/bulma-slider.min.js"></script>
+  <script src="streetsurf_web/static/js/index.js"></script>
 
   <!-- 3D model viewer -->
   <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js"></script>
@@ -124,7 +124,7 @@
 
                     <!-- Supplementary PDF link -->
                   <!-- <span class="link-block">
-                      <a href="static/pdfs/supplementary_material.pdf" target="_blank"
+                      <a href="streetsurf_web/static/pdfs/supplementary_material.pdf" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
@@ -141,14 +141,6 @@
                       <i class="fab fa-github"></i>
                     </span>
                     <span>Code</span>
-                    </a>
-                  </span>
-
-                  <br>
-                  <span class="link-block">
-                    <a href="https://longtimenohack.com/streetsurf_web" target="_blank"
-                    class="external-link button is-normal">
-                    <span>Aliyun mirror site (if not loading or too slow)</span>
                     </a>
                   </span>
             </div>
@@ -168,28 +160,28 @@
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg134763_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg134763_no_lidar.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg163453_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg163453_no_lidar.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg405841_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg405841_no_lidar.mp4"
             type="video/mp4">
           </video>
         </div>
         <div class="item item-video4">
           <video poster="" id="video3" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg102751_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg102751_no_lidar.mp4"
             type="video/mp4">
           </video>
         </div>
@@ -224,7 +216,7 @@
           </p>
         </div>
 
-        <img src="static/teasers/fig_overview.jpg" alt="StreetSurf Overview"/>
+        <img src="streetsurf_web/static/teasers/fig_overview.jpg" alt="StreetSurf Overview"/>
         <div class="content has-text-justified">
           <p>
             StreetSurf overview. By using a collection of posed images, along with an optional set of LiDAR data or monocular cues as inputs (or supervisions), we reconstruct the street-view scene through an optimization process. Each scene is divided into three parts according to the viewing distance, namely <strong>close-range</strong> (cr), <strong>distant-view</strong> (dv) and <strong>sky</strong>.
@@ -277,10 +269,10 @@
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/teasers/seg100613_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg100613_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg100613_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg100613"/>
+          <img src="streetsurf_web/static/teasers/seg100613_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg100613"/>
           <div class="subtitle has-text-centered">
             <p>seg100613..., marching cubes @ 0.1m</p>
           </div>
@@ -288,10 +280,10 @@
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video file here -->
-            <source src="static/teasers/seg153495_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg153495_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg153495_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg153495"/>
+          <img src="streetsurf_web/static/teasers/seg153495_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg153495"/>
           <div class="subtitle has-text-centered">
             <p>seg153495..., marching cubes @ 0.1m</p>
           </div>
@@ -299,10 +291,10 @@
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/teasers/seg106762_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg106762_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg106762_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg106762"/>
+          <img src="streetsurf_web/static/teasers/seg106762_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg106762"/>
           <div class="subtitle has-text-centered">
             <p>seg106762..., marching cubes @ 0.1m</p>
           </div>
@@ -310,10 +302,10 @@
         <div class="item item-video4">
           <video poster="" id="video4" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/teasers/seg158686_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg158686_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg158686_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg158686"/>
+          <img src="streetsurf_web/static/teasers/seg158686_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg158686"/>
           <div class="subtitle has-text-centered">
             <p>seg158686..., marching cubes @ 0.1m</p>
           </div>
@@ -321,10 +313,10 @@
         <div class="item item-video5">
           <video poster="" id="video5" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/teasers/seg152706_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg152706_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg152706_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg152706"/>
+          <img src="streetsurf_web/static/teasers/seg152706_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg152706"/>
           <div class="subtitle has-text-centered">
             <p>seg152706..., marching cubes @ 0.1m</p>
           </div>
@@ -332,10 +324,10 @@
         <div class="item item-video6">
           <video poster="" id="video6" autoplay controls muted loop height="100%">\
             <!-- Your video file here -->
-            <source src="static/teasers/seg132384_with_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg132384_with_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg132384_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg132384"/>
+          <img src="streetsurf_web/static/teasers/seg132384_with_lidar_mesh.jpg" alt="Marching Cube mesh of seg132384"/>
           <div class="subtitle has-text-centered">
             <p>seg132384..., marching cubes @ 0.1m</p>
           </div>
@@ -354,10 +346,10 @@
         <div class="item item-video1">
           <video poster="" id="video1" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg134763_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg134763_no_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg134763_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg134763"/>
+          <img src="streetsurf_web/static/teasers/seg134763_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg134763"/>
           <div class="subtitle has-text-centered">
             <p>seg134763..., marching cubes @ 0.1m</p>
           </div>
@@ -365,10 +357,10 @@
         <div class="item item-video2">
           <video poster="" id="video2" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg163453_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg163453_no_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg163453_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg163453"/>
+          <img src="streetsurf_web/static/teasers/seg163453_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg163453"/>
           <div class="subtitle has-text-centered">
             <p>seg163453..., marching cubes @ 0.1m</p>
           </div>
@@ -376,10 +368,10 @@
         <div class="item item-video3">
           <video poster="" id="video3" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg405841_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg405841_no_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg405841_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg405841"/>
+          <img src="streetsurf_web/static/teasers/seg405841_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg405841"/>
           <div class="subtitle has-text-centered">
             <p>seg405841..., marching cubes @ 0.1m</p>
           </div>
@@ -387,10 +379,10 @@
         <div class="item item-video4">
           <video poster="" id="video4" autoplay controls muted loop height="100%">
             <!-- Your video here -->
-            <source src="static/teasers/seg102751_no_lidar.mp4"
+            <source src="streetsurf_web/static/teasers/seg102751_no_lidar.mp4"
             type="video/mp4">
           </video>
-          <img src="static/teasers/seg102751_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg102751"/>
+          <img src="streetsurf_web/static/teasers/seg102751_no_lidar_mesh.jpg" alt="Marching Cube mesh of seg102751"/>
           <div class="subtitle has-text-centered">
             <p>seg102751..., marching cubes @ 0.1m</p>
           </div>
@@ -427,12 +419,12 @@
       <div class="columns is-centered">
         <div class="column is-half">
           <div class="model-viewer-container">
-            <model-viewer alt="seg152706 with LiDAR mesh" src="static/meshes/seg152706_with_lidar_res=0.1_comp.glb" poster="static/teasers/seg152706_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="200deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
+            <model-viewer alt="seg152706 with LiDAR mesh" src="streetsurf_web/static/meshes/seg152706_with_lidar_res=0.1_comp.glb" poster="streetsurf_web/static/teasers/seg152706_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="200deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
           </div>
         </div>
         <div class="column is-half">
           <div class="model-viewer-container">
-            <model-viewer alt="seg158686 with LiDAR mesh" src="static/meshes/seg158686_with_lidar_res=0.1_comp.glb" poster="static/teasers/seg158686_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="320deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
+            <model-viewer alt="seg158686 with LiDAR mesh" src="streetsurf_web/static/meshes/seg158686_with_lidar_res=0.1_comp.glb" poster="streetsurf_web/static/teasers/seg158686_with_lidar_mesh.jpg" environment-image="legacy" shadow-intensity="0.3" camera-controls touch-action="pan-y" camera-orbit="320deg 80deg 25%" min-camera-orbit="auto auto 1%" max-camera-orbit="auto auto 50%" orbit-sensitivity="0.3" max-field-of-view="30deg" min-field-of-view="0deg" ></model-viewer>
           </div>
         </div>
       </div>
@@ -472,7 +464,7 @@
             </p>
           </div>
           <video poster="" id="tree" autoplay controls muted loop height="100%">
-            <source src="static/teasers/seg405841_lidarsim_crf35.mp4" type="video/mp4">
+            <source src="streetsurf_web/static/teasers/seg405841_lidarsim_crf35.mp4" type="video/mp4">
           </video>
         </div>
 
@@ -484,7 +476,7 @@
             <p>
               Directly feeding the volume-rendered pointcloud into a 3d segmentation model obtained from <a href="https://github.com/PJLab-ADG/PCSeg" target="_blank">PCSeg</a>.
             </p>
-            <img src="static/teasers/segmentation.jpg" alt="Inferred 3d segmentation on the volume-rendered pointcloud."/>
+            <img src="streetsurf_web/static/teasers/segmentation.jpg" alt="Inferred 3d segmentation on the volume-rendered pointcloud."/>
           </div>
 
         </div>
@@ -503,25 +495,25 @@
       </div>
       <div class="columns">
         <div class="column is-one-quater">
-          <img src="static/teasers/raytrace/seg134763_19_gt.jpg" alt="GT Image"/>
+          <img src="streetsurf_web/static/teasers/raytrace/seg134763_19_gt.jpg" alt="GT Image"/>
           <div class="content has-text-centered">
             <p>GT Image</p>
           </div>
         </div>
         <div class="column is-one-quater">
-          <img src="static/teasers/raytrace/seg134763_19_vol_normal.jpg" alt="Volume-rendered normals"/>
+          <img src="streetsurf_web/static/teasers/raytrace/seg134763_19_vol_normal.jpg" alt="Volume-rendered normals"/>
           <div class="content has-text-centered">
             <p>Volume-rendered normals</p>
           </div>
         </div>
         <div class="column is-one-quater">
-          <img src="static/teasers/raytrace/seg134763_19_vol_rgb.jpg" alt="Volume-rendered image"/>
+          <img src="streetsurf_web/static/teasers/raytrace/seg134763_19_vol_rgb.jpg" alt="Volume-rendered image"/>
           <div class="content has-text-centered">
             <p>Volume-rendered image</p>
           </div>
         </div>
         <div class="column is-one-quater">
-          <img src="static/teasers/raytrace/seg134763_19_sphere_rgb.jpg" alt="Sphere-traced image"/>
+          <img src="streetsurf_web/static/teasers/raytrace/seg134763_19_sphere_rgb.jpg" alt="Sphere-traced image"/>
           <div class="content has-text-centered">
             <p>Sphere-traced image</p>
           </div>
